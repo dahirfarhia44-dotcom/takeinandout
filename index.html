@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Breathe With Me</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #e0f7fa, #fff);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+
+    .circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background-color: #80deea;
+      animation: breathe 8s infinite;
+      margin-bottom: 30px;
+    }
+
+    @keyframes breathe {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.5); }
+      100% { transform: scale(1); }
+    }
+
+    .caption {
+      font-size: 1.5em;
+      text-align: center;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle"></div>
+  <div class="caption" id="caption">Inhale… feel the air soften your chest.</div>
+
+  <script>
+    const captions = [
+      "Inhale… feel the air soften your chest.",
+      "Exhale… let go of the tension.",
+      "Pause… you are safe here.",
+      "Inhale… fill your belly with light.",
+      "Exhale… release the weight of the day."
+    ];
+
+    let index = 0;
+    const captionEl = document.getElementById("caption");
+
+    setInterval(() => {
+      index = (index + 1) % captions.length;
+      captionEl.style.opacity = 0;
+      setTimeout(() => {
+        captionEl.textContent = captions[index];
+        captionEl.style.opacity = 1;
+      }, 1000);
+    }, 8000);
+  </script>
+<audio id="breathingAudio" autoplay loop>
+  <source src="breath.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+</body>
+</html>
